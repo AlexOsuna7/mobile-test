@@ -1,6 +1,5 @@
 package com.example.mobile_test.core.di
 
-import com.google.firebase.appdistribution.gradle.ApiService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -14,12 +13,8 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://")
+            .baseUrl("http://10.0.2.2:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 }

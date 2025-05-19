@@ -43,4 +43,26 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+    <!-- HomeScreen -->
+    <string name="home_welcome_title">Welcome to the QR app!</string>
+    <string name="home_welcome_message">Use the floating button to generate or scan a QR code.</string>
+
+    <!-- FabMenu -->
+    <string name="fab_qr_content_description">View QR</string>
+    <string name="fab_scan_content_description">Scan</string>
+    <string name="fab_toggle_menu_content_description">Toggle menu</string>
+
+    <!-- MyApp -->
+    <string name="app_bar_title">My QR App</string>
+
+    <!-- QrScreen -->
+    <string name="qr_loading">Generating code...</string>
+    <string name="qr_seed_label">Seed: %1$s</string>
+    <string name="qr_error_prefix">Error: %1$s</string>
+    <string name="qr_idle_message">Press the button to generate a QR code</string>
+    <string name="qr_retry_button">Retry</string>
+
+    <!-- ScanScreen placeholder -->
+    <string name="scan_screen_message">Scan screen</string>
 </resources>

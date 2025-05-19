@@ -1,59 +1,77 @@
 package com.example.mobile_test
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import com.example.mobile_test.databinding.ActivityMainBinding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.navigation.compose.*
+import com.example.mobile_test.app.MobileTestApp
+import com.example.mobile_test.features.home.presentation.FabMenu
+import com.example.mobile_test.features.home.presentation.HomeScreen
+import com.example.mobile_test.features.qr.presentation.QrScreen
+import com.example.mobile_test.features.qr.presentation.QrViewModel
+import com.example.mobile_test.features.qr.presentation.QrViewModelFactory
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    @Inject
+    lateinit var qrViewModelFactory: QrViewModelFactory
+
+    private val viewModel: QrViewModel by viewModels { qrViewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MobileTestApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setSupportActionBar(binding.toolbar)
-
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
+        setContent {
+            MyApp(viewModel)
         }
     }
+}
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
+@Composable
+fun MyApp(viewModel: QrViewModel) {
+    val navController = rememberNavController()
+    var isFabMenuOpen by remember { mutableStateOf(false) }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text(stringResource(R.string.app_bar_title)) })
+        },
+        floatingActionButton = {
+            FabMenu(
+                isExpanded = isFabMenuOpen,
+                onToggle = { isFabMenuOpen = !isFabMenuOpen },
+                onQrClick = {
+                    navController.navigate("qr_screen")
+                    isFabMenuOpen = false
+                },
+                onScanClick = {
+                    navController.navigate("scan_screen")
+                    isFabMenuOpen = false
+                }
+            )
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = "home",
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable("home") {
+                HomeScreen()
+            }
+            composable("qr_screen") {
+                QrScreen(viewModel)
+            }
+            composable("scan_screen") {
+                Text(stringResource(R.string.scan_screen_message))
+            }
+        }
     }
 }
