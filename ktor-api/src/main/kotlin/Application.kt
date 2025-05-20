@@ -9,6 +9,7 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -16,7 +17,7 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 @Serializable
-data class SeedResponse(val seed: String, val expires_at: String)
+data class SeedResponse(val seed: String,val expiresAt: Long)
 @Serializable
 data class ValidationResponse(val valid: Boolean, val reason: String? = null)
 
@@ -38,7 +39,7 @@ fun Application.module() {
 
         get("/seed") {
             val seed = UUID.randomUUID().toString().replace("-", "")
-            val expiration = Instant.now().plus(10, ChronoUnit.MINUTES)
+            val expiration = Instant.now().plus(1, ChronoUnit.MINUTES)
 
             seedStorage[seed] = expiration
 
@@ -49,7 +50,7 @@ fun Application.module() {
                 println(" - $key -> Expires at: $value")
             }
 
-            call.respond(SeedResponse(seed, expiration.toString()))
+            call.respond(SeedResponse(seed, expiration.toEpochMilli()))
         }
 
         get("/validate") {
