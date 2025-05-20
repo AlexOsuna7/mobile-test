@@ -45,7 +45,9 @@ fun ScannerScreen(
         }
 
         is ScannerUiState.Success -> {
-            SuccessContent()
+            SuccessContent(
+                onRescan = { viewModel.resetState() }
+            )
         }
 
         is ScannerUiState.Error -> {
@@ -106,10 +108,13 @@ fun LoadingContent() {
 }
 
 @Composable
-fun SuccessContent() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+fun SuccessContent(onRescan: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = "Seed is valid!",
@@ -117,6 +122,12 @@ fun SuccessContent() {
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(onClick = onRescan) {
+            Text("Scan another qr")
+        }
     }
 }
 
