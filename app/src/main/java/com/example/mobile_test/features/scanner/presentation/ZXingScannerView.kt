@@ -28,10 +28,17 @@ import com.google.zxing.NotFoundException
 import com.google.zxing.common.HybridBinarizer
 
 /**
- * A composable QR scanner view using CameraX and ZXing.
+ * A Composable QR scanner view built using CameraX and ZXing.
  *
- * @param modifier Modifier for layout adjustments.
- * @param onQRCodeScanned Callback triggered with the scanned QR code text.
+ * This component displays a live camera preview and continuously analyzes frames for QR codes.
+ * When a QR code is detected, the provided [onQRCodeScanned] callback is triggered with the decoded text.
+ *
+ * @param modifier Modifier to apply layout changes to the camera preview.
+ * @param onQRCodeScanned Lambda that receives the scanned QR code string once detected.
+ *
+ * Note:
+ * - This scanner stops after detecting the first valid QR code.
+ * - Requires camera permission to function properly.
  */
 @OptIn(ExperimentalGetImage::class)
 @Composable
@@ -102,6 +109,17 @@ fun ZXingScannerView(
     }
 }
 
+/**
+ * Converts an [ImageProxy] to a ZXing-compatible [LuminanceSource].
+ *
+ * This utility function extracts the luminance data from the camera frame to allow
+ * ZXing's QR decoder to process it.
+ *
+ * @throws IllegalStateException if the image is null.
+ *
+ * @receiver The [ImageProxy] frame from CameraX analysis use case.
+ * @return A [LuminanceSource] containing the grayscale pixel data.
+ */
 @OptIn(ExperimentalGetImage::class)
 fun ImageProxy.toLuminanceSource(): LuminanceSource {
     val image: Image = this.image ?: throw IllegalStateException("Image is null")
