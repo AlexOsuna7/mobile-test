@@ -19,7 +19,7 @@ object NetworkModule {
         val baseUrl = if (isRunningOnEmulator()) {
             "http://10.0.2.2:8080/"
         } else {
-            "http://192.168.100.2:8080/"  // Cambia esta IP según tu PC
+            "http://192.168.100.2:8080/"
         }
         return Retrofit.Builder()
             .baseUrl(baseUrl)

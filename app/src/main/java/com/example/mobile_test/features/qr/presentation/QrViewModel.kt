@@ -15,16 +15,13 @@ class QrViewModel(
     private val _seedState = MutableStateFlow<SeedUiState>(SeedUiState.Idle)
     val seedState: StateFlow<SeedUiState> = _seedState.asStateFlow()
 
-    init {
-        fetchSeed()
-    }
 
     fun fetchSeed() {
         viewModelScope.launch {
             _seedState.value = SeedUiState.Loading
             try {
                 val seed = getQrSeedUseCase()
-                _seedState.value = SeedUiState.Success(seed.first, seed.second)
+                _seedState.value = SeedUiState.Success(seed.first, seed.second, seed.third)
             } catch (e: Exception) {
                 _seedState.value = SeedUiState.Error(e.message ?: "Unknown Error")
             }

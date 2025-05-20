@@ -100,6 +100,7 @@ fun MyApp(qrViewModel: QrViewModel, scannerViewModel: ScannerViewModel) {
                 onToggle = { isFabMenuOpen = !isFabMenuOpen },
                 onQrClick = {
                     navController.navigate("qr_screen")
+                    qrViewModel.fetchSeed()
                     isFabMenuOpen = false
                 },
                 onScanClick = {

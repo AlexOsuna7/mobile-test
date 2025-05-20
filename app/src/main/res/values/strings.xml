@@ -62,6 +62,12 @@
     <string name="qr_error_prefix">Error: %1$s</string>
     <string name="qr_idle_message">Press the button to generate a QR code</string>
     <string name="qr_retry_button">Retry</string>
+    <string name="qr_code_description">QR Code</string>
+    <string name="qr_expired">This QR code has expired.</string>
+    <string name="qr_generate_new">Generate new QR</string>
+    <string name="qr_expires_in">Expires in: %1$s</string>
+    <string name="qr_seed_expired">Seed expired</string>
+
 
     <!-- ScanScreen placeholder -->
     <string name="scan_screen_message">Scan screen</string>
