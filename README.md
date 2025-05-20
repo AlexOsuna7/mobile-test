@@ -34,6 +34,14 @@ Feel free to explore each component separately using the links above.
 
 ---
 
+
+## Demo
+
+
+
+https://github.com/user-attachments/assets/eadde8a5-bebd-41e0-a359-bb56f89de801
+
+
 ## Contact
 
 For questions or issues, please open an issue in this repository or contact [Alex Osuna] at [alexosuna82@gmail.com].
