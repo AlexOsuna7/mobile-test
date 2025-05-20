@@ -97,7 +97,7 @@ dependencies {
     implementation(libs.camera.lifecycle)
     implementation(libs.camera.view)
 
-    implementation("com.google.accompanist:accompanist-permissions:0.33.2-alpha") // versión más segura
+    implementation("com.google.accompanist:accompanist-permissions:0.33.2-alpha")
 
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
@@ -105,4 +105,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit.android)
     androidTestImplementation(libs.espresso)
+
+    // Mockito
+    testImplementation ("org.mockito:mockito-core:5.2.0")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.2.1")
+
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+    testImplementation ("org.assertj:assertj-core:3.24.2")
+
+    androidTestImplementation ("androidx.test:core:1.5.0")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
 }
