@@ -132,7 +132,8 @@ fun ErrorContent(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Error: $message",
@@ -147,6 +148,7 @@ fun ErrorContent(
             color = Color.Red,
             style = MaterialTheme.typography.body1
         )
+
         TextField(
             value = input,
             onValueChange = { input = it },
@@ -156,8 +158,15 @@ fun ErrorContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = onRescan,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            onClick = { onRetry(input) }
+        ) {
+            Text("Retry")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+            onClick = onRescan
         ) {
             Text("Scan again")
         }
