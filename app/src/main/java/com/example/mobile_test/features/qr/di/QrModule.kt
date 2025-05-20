@@ -41,5 +41,4 @@ class QrModule {
     fun provideGetSeedUseCase(repository: QrRepository): GetSeedUseCase {
         return GetSeedUseCase(repository)
     }
-
 }

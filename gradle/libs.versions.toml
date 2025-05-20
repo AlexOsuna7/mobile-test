@@ -16,10 +16,15 @@ junitAndroid = "1.1.5"
 espresso = "3.5.1"
 toolingPreview = "1.5.3"
 materialIcons = "1.6.1"
+cameraView = "1.2.3"
+cameraLifecycle = "1.2.3"
+cameraCore = "1.2.3"
+cameraCamera2 = "1.2.3"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.8.0" }
+
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
 compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
 compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIcons" }
@@ -48,9 +53,13 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 junit-android = { group = "androidx.test.ext", name = "junit", version.ref = "junitAndroid" }
 espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 
+camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraCore" }
+camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraCamera2" }
+camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraLifecycle" }
+camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraView" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-

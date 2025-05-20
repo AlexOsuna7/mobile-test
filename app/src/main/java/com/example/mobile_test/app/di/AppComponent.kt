@@ -5,11 +5,12 @@ import com.example.mobile_test.app.MobileTestApp
 import com.example.mobile_test.core.di.CacheModule
 import com.example.mobile_test.core.di.NetworkModule
 import com.example.mobile_test.features.qr.di.QrModule
+import com.example.mobile_test.features.scanner.di.ScannerModule
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, QrModule::class, CacheModule::class])
+@Component(modules = [NetworkModule::class, QrModule::class, CacheModule::class, ScannerModule::class])
 interface AppComponent {
     fun inject(app: MobileTestApp)
     fun inject(activity: MainActivity)

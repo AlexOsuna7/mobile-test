@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    kotlin("plugin.serialization") version "1.8.10"
+    kotlin("plugin.serialization") version "1.9.24"
 }
 
 android {
@@ -43,6 +43,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -51,17 +52,21 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     kotlin {
         jvmToolchain(11)
     }
 
     buildFeatures {
         compose = true
-        viewBinding = true
     }
 
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.13"
+    }
+
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -86,6 +91,13 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+
+    implementation(libs.camera.core)
+    implementation(libs.camera.camera2)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.view)
+
+    implementation("com.google.accompanist:accompanist-permissions:0.33.2-alpha") // versión más segura
 
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
