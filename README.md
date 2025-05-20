@@ -11,7 +11,7 @@ This repository contains two main components:
 2. **Android App**  
    The Android client application that consumes the API, generates QR codes, and scans them.
 
-   See details and instructions here: [android-app/README.md](android-app/README.md)
+   See details and instructions here: [app/README.md](app/README.md)
 
 ---
 
@@ -30,10 +30,10 @@ Feel free to explore each component separately using the links above.
 ## How to get started
 
 - To run the API backend, navigate to the `ktor-api` folder and follow the README instructions.
-- To run the Android app, navigate to the `android-app` folder and follow its README instructions.
+- To run the Android app, navigate to the `app` folder and follow its README instructions.
 
 ---
 
 ## Contact
 
-For questions or issues, please open an issue in this repository or contact [Your Name] at [your.email@example.com].
+For questions or issues, please open an issue in this repository or contact [Alex Osuna] at [alexosuna82@gmail.com].
