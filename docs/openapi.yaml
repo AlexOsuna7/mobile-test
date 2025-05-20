@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: Seed API
+  version: "1.0"
+  description: API to generate and validate seeds with expiration
+  contact:
+    name: Alex
+    email: alexosuna82@gmail.com
+servers:
+  - url: http://localhost:8080
+paths:
+  /seed:
+    get:
+      summary: Generate a unique seed with a 10-minute expiration
+      responses:
+        '200':
+          description: Seed successfully generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeedResponse'
+  /validate:
+    get:
+      summary: Validate if a provided seed is valid and not expired
+      parameters:
+        - name: seed
+          in: query
+          description: Seed to validate
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Seed is valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '400':
+          description: Missing seed parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '404':
+          description: Seed not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '410':
+          description: Seed expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+
+components:
+  schemas:
+    SeedResponse:
+      type: object
+      properties:
+        seed:
+          type: string
+          example: "123e4567e89b12d3a456426655440000"
+        expires_at:
+          type: string
+          format: date-time
+          example: "2025-05-19T15:00:00Z"
+    ValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          example: true
+        reason:
+          type: string
+          nullable: true
+          example: "Seed expired"

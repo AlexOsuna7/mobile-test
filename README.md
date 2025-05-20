@@ -1,32 +1,39 @@
 # Superformula Mobile Developer Coding Test
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
 
-## Requirements
+This repository contains two main components:
 
-There is only one test here currently, please review and get back to us.
+1. **API Backend (Ktor)**  
+   A Kotlin-based REST API server that generates and validates seeds for QR codes.
 
-## What We Care About
+   See details and instructions here: [ktor-api/README.md](ktor-api/README.md)
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+2. **Android App**  
+   The Android client application that consumes the API, generates QR codes, and scans them.
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+   See details and instructions here: [android-app/README.md](android-app/README.md)
 
-Here's what you should strive for:
+---
 
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
+## Overview
 
-## Q&A
+This project is designed to demonstrate a full-stack mobile solution including:
 
-> Where should I send back the result when I'm done?
+- A Ktor API backend with REST endpoints for seed generation and validation.
+- An Android application with QR code generation and scanning capabilities.
+- Clear documentation and modular architecture for maintainability.
 
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
+Feel free to explore each component separately using the links above.
 
-> What if I have a question?
+---
 
-Just create a new issue in this repo and we will respond and get back to you quickly.
+## How to get started
 
-## Review
-The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions. 
+- To run the API backend, navigate to the `ktor-api` folder and follow the README instructions.
+- To run the Android app, navigate to the `android-app` folder and follow its README instructions.
+
+---
+
+## Contact
+
+For questions or issues, please open an issue in this repository or contact [Your Name] at [your.email@example.com].

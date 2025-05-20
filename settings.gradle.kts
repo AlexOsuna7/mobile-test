@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "mobile-test"
 include(":app")
- 
+include(":ktor-api")
